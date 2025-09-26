@@ -24,6 +24,11 @@ food = [0,0]
 [ ] [O] [ ] 
 '''
 import random
+import os
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 # 网格显示函数
 def print_grid(grid):
     for row in grid:
@@ -49,35 +54,53 @@ def is_valid_move(head_row,head_col,grid_size,snake_body):    #判断蛇是否�
         print('游戏结束！你撞到自己了。')
         return False
     return True
+
+
 # 网格大小、蛇、食品位置
-grid_size = 3
+grid_size = 6
 snake_body = [[random.randint(0,grid_size-1),random.randint(0,grid_size-1)]]
 food_location = [random.randint(0,grid_size-1),random.randint(0,grid_size-1)]
-# 坐标系
-grid = [[' ' for _ in range(grid_size)] for _ in range(grid_size)]
-print(snake_body)
-print(food_location)
-for i, (row,col) in enumerate(snake_body):
-    if i == 0:  # 给蛇头渲染
-        grid[row][col] = 'O'
-    else:       # 给蛇身渲染    
-        grid[row][col] = '*'
-grid[food_location[0]][food_location[1]] = 'F'
 
-# wasd 接收蛇移动方向
 while True:
-    direction = input("输入前后左右(wasd):").lower()
-    if direction in ['w','a','s','d']:
+    # 坐标系
+    grid = [[' ' for _ in range(grid_size)] for _ in range(grid_size)]
+    for i, (row,col) in enumerate(snake_body):
+        if i == 0:  # 给蛇头渲染
+            grid[row][col] = 'O'
+        else:       # 给蛇身渲染    
+            grid[row][col] = '*'
+    grid[food_location[0]][food_location[1]] = 'F' # 给食物渲染
+
+    print_grid(grid)
+    # wasd 接收蛇移动方向
+    while True:
+        direction = input("输入前后左右(wasd):").lower()
+        if direction in ['w','a','s','d']:
+            break
+        else:
+            print("无效输入，请重新输入.")
+
+    clear_screen()
+    
+    head_row, head_col = snake_body[0]
+
+    head_row, head_col = move_snake(direction,head_row, head_col) # 新蛇头位置
+    # 出错 返回false
+    if not is_valid_move(head_row,head_col,grid_size,snake_body):
         break
+
+    # 检查是否吃到食物
+    if[head_row, head_col] == food_location:
+        snake_body.insert(0,[head_row, head_col]) # 吃到食物，蛇变长
+        print("吃到食物了，蛇变长了")
+        while True:
+            food_location = [random.randint(0,grid_size-1),random.randint(0,grid_size-1)]
+            if food_location not in snake_body: # 食物不能出现在蛇身上
+                break
     else:
-        print("无效输入，请重新输入.")
-
-head_row, head_col = snake_body[0]
-
-head_row, head_col = move_snake(direction,head_row, head_col) # 新蛇头位置
-print(head_row, head_col)
+        snake_body.insert(0,[head_row, head_col]) # 没吃到食物，蛇移动
+        snake_body.pop() # 删除蛇尾
+    
 
 
-print(grid)
-print_grid(grid)
 
