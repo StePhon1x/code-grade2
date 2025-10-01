@@ -1,4 +1,9 @@
+# C++ 编译产物
 *.exe
-*.json
-*.tempCodeRunnerFile.py
+*.out
+*.obj
+*.o
+
+# VS Code 生成的临时文件
 *.tempCodeRunnerFile.cpp
+*.tempCodeRunnerFile.py
