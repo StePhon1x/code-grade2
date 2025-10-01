@@ -1,2 +1,4 @@
 *.exe
 *.json
+*.tempCodeRunnerFile.py
+*.tempCodeRunnerFile.cpp
