@@ -4,5 +4,6 @@
         "ostream": "cpp",
         "iostream": "cpp",
         "iomanip": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "D:/code-grade2/1002",
 }
