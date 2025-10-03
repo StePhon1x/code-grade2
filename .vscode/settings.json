@@ -3,7 +3,8 @@
         "random": "cpp",
         "ostream": "cpp",
         "iostream": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "new": "cpp"
     },
     "cmake.sourceDirectory": "D:/code-grade2/1002",
 }
