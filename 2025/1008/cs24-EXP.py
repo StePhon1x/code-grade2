@@ -77,8 +77,7 @@ total_score = 0
 
 # 学生在此处编写代码
 for info in students_dict.values():
-    score = info["score"]
-    total_score += score
+    total_score += info["score"]
 average_score = total_score/len(students_dict)
 
 print(f"班级平均分：{average_score:.2f}")
