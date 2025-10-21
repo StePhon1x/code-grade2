@@ -7,3 +7,6 @@
 # VS Code 生成的临时文件
 *.tempCodeRunnerFile.cpp
 *.tempCodeRunnerFile.py
+
+
+*.tempCodeRunnerFile.*
