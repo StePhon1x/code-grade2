@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>温馨提示雨</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      height: 100vh;
+      background: linear-gradient(135deg, #fef6f9, #e0f7ff);
+      font-family: "微软雅黑", sans-serif;
+      position: relative;
+    }
+
+    .tip {
+      position: absolute;
+      padding: 15px 25px;
+      border-radius: 12px;
+      font-size: 18px;
+      color: #333;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+      opacity: 0;
+      transform: scale(0.6);
+      transition: opacity 0.5s, transform 0.5s;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .tip.show {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #stopHint {
+      position: fixed;
+      bottom: 10px;
+      right: 15px;
+      font-size: 14px;
+      color: #555;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <div id="stopHint">按空格键停止弹窗雨</div>
+  
+  <script>
+    const tips = [
+      '多喝热水', '保持微笑呀', '每天都要元气满满', '记得吃水果', '保持好心情', '好好爱自己', '我想你了',
+      '梦到成真', '早点休息', '愿所有烦恼都远离你', '照顾好自己', '天冷了加衣服', '金榜题名',
+      '别熬夜', '今天过得开心哦', '天冷了，多穿衣服'
+    ];
+
+    const bgColors = [
+      'lightpink', 'skyblue', 'lightgreen', 'lavender', 'lightyellow', 'plum',
+      'coral', 'bisque', 'lightcyan', 'honeydew', 'lavenderblush', 'oldlace'
+    ];
+
+    let stop = false;
+
+    function createTip() {
+      if (stop) return;
+
+      const tip = document.createElement('div');
+      tip.className = 'tip';
+      tip.textContent = tips[Math.floor(Math.random() * tips.length)];
+      tip.style.backgroundColor = bgColors[Math.floor(Math.random() * bgColors.length)];
+
+      const w = 300, h = 60;
+      const x = Math.random() * (window.innerWidth - w);
+      const y = Math.random() * (window.innerHeight - h);
+      tip.style.left = `${x}px`;
+      tip.style.top = `${y}px`;
+
+      document.body.appendChild(tip);
+      requestAnimationFrame(() => tip.classList.add('show'));
+
+      // 弹出一段时间后淡出并删除
+      setTimeout(() => {
+        tip.style.opacity = 0;
+        tip.style.transform = 'scale(0.7)';
+        setTimeout(() => tip.remove(), 500);
+      }, 2500);
+    }
+
+    // 定时生成弹窗
+    let interval = setInterval(createTip, 80);
+
+    // 空格键停止
+    document.addEventListener('keydown', e => {
+      if (e.code === 'Space') {
+        stop = true;
+        clearInterval(interval);
+        document.querySelector('#stopHint').textContent = '弹窗已停止（刷新页面可重新开始）';
+      }
+    });
+  </script>
+</body>
+</html>
