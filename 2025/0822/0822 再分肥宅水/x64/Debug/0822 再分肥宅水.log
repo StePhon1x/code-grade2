@@ -1,4 +1,0 @@
-﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(534,5): warning MSB8028: 中间目录(x64\Debug\)包含从另一个项目(0822 再分肥宅水.vcxproj)共享的文件。   这会导致错误的清除和重新生成行为。
-  0822 再分肥宅水.cpp
-D:\class tests\0822 再分肥宅水\0822 再分肥宅水\0822 再分肥宅水.cpp(56,33): warning C4244: “=”: 从“double”转换到“int”，可能丢失数据
-  0822 再分肥宅水.vcxproj -> D:\class tests\0822 再分肥宅水\x64\Debug\0822.exe
