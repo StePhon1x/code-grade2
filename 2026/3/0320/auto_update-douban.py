@@ -1,11 +1,11 @@
 # 20260323 加入弹窗功能 可弹出每日推荐电影
 
-import requests
-from bs4 import BeautifulSoup
-import pyodbc
-import time
-import customtkinter as ctk
-import webbrowser
+import requests  # 发送 HTTP 请求，用来下载网页内容
+from bs4 import BeautifulSoup  # 解析 HTML，从网页中提取数据（"网页解剖刀"）
+import pyodbc  # 连接 Windows 上的 SQL Server 数据库
+import time  # 提供 time.sleep()，爬取间隔防止被封 IP
+import customtkinter as ctk  # 现代风格的 tkinter UI 库，用来做弹窗
+import webbrowser  # 调用系统默认浏览器打开链接
 
 
 def auto_update_and_recommend():

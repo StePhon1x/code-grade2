@@ -26,7 +26,6 @@ def auto_update_and_recommend():
     for start_num in range(0, 250, 25):
         try:
             url = f"https://movie.douban.com/top250?start={start_num}"
-            url = f"https://movie.douban.com/top250?start={start_num}"
             res = requests.get(url, headers=headers, timeout=10)
             soup = BeautifulSoup(res.text, "html.parser")
             items = soup.find_all("div", class_="item")
